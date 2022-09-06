@@ -1,0 +1,6 @@
+{
+  "posts": [{ "id": 1, "title": "Mumf teste json", "link": "typicode" }],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" },
+  "cards": [{ "id": 1, "title": "Mumf teste json", "link": "typicode" }]
+}
