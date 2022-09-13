@@ -35,12 +35,18 @@ const addCard = () => {
   service.post("cards", card).then(() => {
     textCard.value = "";
     updateList();
-    handleNovo();
+    resetCard();
   });
 };
 
 const deleteCard = (id: string) => {
   service.delete(`cards/${id}`).then(() => {
+    updateList();
+  });
+};
+
+const editCard = (card: ICard) => {
+  service.put(`cards/${card.id}`, card).then(() => {
     updateList();
   });
 };
@@ -60,7 +66,6 @@ onMounted(() => {
     <button class="button__new" @click="novo = true" v-if="novo == false">
       Novo
     </button>
-
     <textarea
       class="card__new"
       v-if="novo == true"
@@ -68,8 +73,10 @@ onMounted(() => {
     ></textarea>
     <ListCards>
       <CardItem v-for="card in listCards" :key="card.id">
-        <template #title>{{ card.title }}</template>
-        <template #additional><p>Editar</p></template>
+        <template #title>
+          <textarea class="card__textarea" v-model="card.title" cols="35" rows="2"></textarea>
+        </template>
+        <template #additional><p @click="editCard(card)">Editar</p></template>
         <template #exit><p @click="deleteCard(card.id)">X</p></template>
       </CardItem>
     </ListCards>
@@ -99,8 +106,12 @@ button {
   left: 40%;
 }
 
+.card__textarea {
+  background: transparent;
+  border-style: none;
+}
 .button__new {
-  background-color: #F94892;
+  background-color: #f94892;
   left: 2%;
   color: #fff;
 }
@@ -111,5 +122,6 @@ button {
   height: 250px;
   left: 3%;
   bottom: 10%;
+  z-index: 5;
 }
 </style>
