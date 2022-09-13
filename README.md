@@ -1,6 +1,6 @@
 # card-app
 
-Criado usando o Vue 3, com typescript e JSON Server
+Criado usando o Vue 3, com Typescript e JSON Server
 
 
 ## Configuração:
